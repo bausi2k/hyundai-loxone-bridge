@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  hyundai-bridge:
+    build: .
+    image: hyundai-bridge:latest
+    container_name: hyundai-bridge
+    restart: unless-stopped
+    ports:
+      - "8444:8444"
+    volumes:
+      # Hier wird die Config gespeichert (Login + UDP/MQTT)
+      - ./config.json:/app/config.json
