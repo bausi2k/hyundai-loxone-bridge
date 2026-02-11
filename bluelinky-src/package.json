@@ -1,0 +1,67 @@
+{
+  "name": "bluelinky",
+  "version": "10.0.0",
+  "description": "An unofficial nodejs API wrapper for Hyundai bluelink",
+  "main": "dist/index.cjs",
+  "module": "dist/index.esm.js",
+  "type": "module",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rimraf dist/ && rollup -c rollup.config.js",
+    "dev": "rollup -w -c rollup.config.js",
+    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write './src/**/*.{js,jsx,ts,tsx}'",
+    "prepublishOnly": "npm run build",
+    "test": "jest --verbose",
+    "debug": "ts-node -p debug.ts",
+    "debug:modern": "tsx debug.ts",
+    "eu:export:cfb": "cross-env LOG_LEVEL=debug ts-node ./scripts/export_eu_cfb.ts",
+    "au:export:cfb": "cross-env LOG_LEVEL=debug ts-node ./scripts/export_au_cfb.ts",
+    "test-ca": "npm run build && node test-ca.js",
+    "watch": "tsc -w"
+  },
+  "author": "Hacksore",
+  "license": "MIT",
+  "dependencies": {
+    "base64-js": "^1.5.1",
+    "got": "^9.6.0",
+    "push-receiver": "^2.1.1",
+    "tough-cookie": "^4.0.0",
+    "undici": "^6.10.2",
+    "winston": "^3.3.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
+  "homepage": "https://github.com/Hacksore/bluelinky",
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/got": "^9.4.4",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.30",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
+    "babel-jest": "^29.7.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.57.0",
+    "husky": "^4.2.5",
+    "inquirer": "^7.3.0",
+    "jest": "^29.7.0",
+    "jest-fetch-mock": "^3.0.3",
+    "prettier": "^2.7.1",
+    "rollup": "^4.13.2",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "tslib": "^2.6.2",
+    "tsx": "^4.19.4",
+    "typescript": "^5.4.3"
+  }
+}
