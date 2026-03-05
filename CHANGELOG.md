@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.3.2] - 2026-03-05
+### Geändert
+
+- Docker fixes
 
 ## [1.3.0] - 2026-03-05
 ### Geändert

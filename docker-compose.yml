@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   hyundai-bridge:
     # Hier holen wir jetzt das fertige Image von GitHub!
