@@ -2,12 +2,14 @@ version: '3.8'
 
 services:
   hyundai-bridge:
-    build: .
-    image: hyundai-bridge:latest
-    container_name: hyundai-bridge
+    # Hier holen wir jetzt das fertige Image von GitHub!
+    image: ghcr.io/bausi2k/hyundai-loxone-bridge:latest
+    container_name: hyundai-loxone-bridge
     restart: unless-stopped
     ports:
       - "8444:8444"
     volumes:
-      # Hier wird die Config gespeichert (Login + UDP/MQTT)
+      # Speichert die config.json dauerhaft, auch wenn der Container ein Update bekommt
       - ./config.json:/app/config.json
+    environment:
+      - TZ=Europe/Vienna # Wichtig für die korrekten Zeitstempel
