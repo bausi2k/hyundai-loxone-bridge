@@ -20,6 +20,13 @@ body {
     padding-bottom: 50px;
 }
 
+/* --- Layout Container (NEU: Zentriert das Layout) --- */
+.view-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding-bottom: 80px;
+}
+
 /* --- Header & Big Stats --- */
 .header {
     display: flex; flex-direction: column; align-items: center; 
@@ -80,20 +87,11 @@ body {
     content: ''; position: absolute; bottom: 35px; left: 18px; right: 18px; height: 25px;
     background: #2c2c2c; border-radius: 10px 10px 40% 40%;
 }
-/* Schiebedach (Container für Schloss) */
 .sunroof {
-    position: absolute;
-    top: 100px;
-    left: 20px;
-    right: 20px;
-    height: 80px;
-    border: none; /* <--- KEIN RAHMEN MEHR */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: absolute; top: 100px; left: 20px; right: 20px; height: 80px;
+    border: 2px solid rgba(0,0,0,0.05); border-radius: 10px;
+    display: flex; justify-content: center; align-items: center;
 }
-
-/* Der Rest (.center-lock etc.) bleibt wie im letzten Update */
 .center-lock {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
     font-size: 24px; color: rgba(0,0,0,0.2); z-index: 10;
@@ -114,7 +112,7 @@ body {
 .btn-lock { top: 160px; left: calc(50% - 150px); }
 .btn-horn { top: 110px; right: calc(50% - 150px); }
 
-/* Visualisierung */
+/* Visualisierung Innen/Türen */
 .door { position: absolute; background: var(--danger); box-shadow: 0 0 8px var(--danger); display: none; border-radius: 2px; }
 .door.open { display: block; }
 .door-fl { top: 75px; left: -3px; width: 4px; height: 40px; }
@@ -146,21 +144,75 @@ body {
 
 
 /* Grid & Cards */
-.cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 500px; margin: 0 auto; }
+.cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
 .card { background: var(--card-bg); padding: 20px; border-radius: 24px; box-shadow: var(--shadow-soft); display: flex; flex-direction: column; border: 1px solid rgba(0,0,0,0.02); }
 .card-title { font-size: 13px; font-weight: 600; color: var(--secondary); margin-bottom: 8px; }
 .card-value { font-size: 17px; font-weight: 700; color: var(--primary); }
 .card-icon { font-size: 24px; margin-bottom: 12px; color: var(--accent); }
 
+/* --- NEUES BUTTON DESIGN (NEU) --- */
+
+/* Preset Container & Buttons */
+.preset-container {
+    display: flex; gap: 10px; margin-top: 10px;
+}
+.preset-btn {
+    flex: 1; border: none; border-radius: 14px; padding: 15px 10px;
+    font-size: 14px; font-weight: 700; color: white; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    transition: transform 0.1s, box-shadow 0.2s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.preset-btn:active { transform: scale(0.95); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.preset-btn i { font-size: 20px; }
+
+/* Winter (Blau Gradient) */
+.preset-winter {
+    background: linear-gradient(135deg, #007aff, #00c6ff);
+}
+/* Sommer (Orange Gradient) */
+.preset-summer {
+    background: linear-gradient(135deg, #ff9500, #ffcc00);
+}
+/* Stop (Dunkelgrau) */
+.preset-stop {
+    background: #3a3a3c;
+}
+
+/* Status Action Buttons (Cache/Live) */
+.status-action-container {
+    display: flex; flex-direction: column; gap: 10px; margin-top: auto;
+}
+.status-btn {
+    border: none; border-radius: 12px; padding: 12px;
+    background: #f2f2f7; color: var(--primary); font-size: 14px; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: background 0.2s;
+}
+.status-btn:active { background: #e5e5ea; }
+.status-btn-live {
+    background: #fff0f0; color: var(--danger);
+}
+.status-btn-live:active { background: #ffdada; }
+
+/* Speichern / Main Action Button */
+.action-btn-main {
+    background: var(--primary); color: white; border: none; border-radius: 16px;
+    padding: 16px; font-size: 16px; font-weight: 700; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    transition: background 0.2s;
+}
+.action-btn-main:active { background: #000; }
+
 /* Form Elements */
-.range-wrap { margin: 15px 0; }
-input[type=range] { width: 100%; -webkit-appearance: none; background: transparent; }
-input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 20px; width: 20px; border-radius: 50%; background: var(--accent); margin-top: -8px; box-shadow: 0 2px 6px rgba(0,122,255,0.4); }
-input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; background: #e0e0e0; border-radius: 2px; }
+.lbl { display: block; font-size: 12px; font-weight: 600; color: var(--secondary); margin-bottom: 5px; margin-top: 10px; }
 .form-input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 10px; font-size: 16px; margin-top: 5px; box-sizing: border-box; }
 .form-input:focus { border-color: var(--accent); outline: none; }
+.checkbox-group { display: flex; gap: 15px; margin: 15px 0; align-items: center; }
+.checkbox-group label { display: flex; align-items: center; gap: 5px; font-size: 14px; }
+.api-hint { font-size: 11px; background: #eee; padding: 5px; margin-top: 5px; border-radius: 5px; color: #666; font-family: monospace;}
 
 /* Loader */
-#loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.85); backdrop-filter: blur(8px); z-index: 1000; display: none; align-items: center; justify-content: center; flex-direction: column; }
+#loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.8); z-index: 1000; display: none; align-items: center; justify-content: center; flex-direction: column; }
 .spinner { width: 40px; height: 40px; border: 4px solid #ddd; border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 15px; }
 @keyframes spin { 100% { transform: rotate(360deg); } }

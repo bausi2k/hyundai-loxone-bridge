@@ -1,5 +1,14 @@
 # Changelog
 
+
+## [1.3.0] - 2026-03-05
+### Geändert
+- **Komplettes UI/UX Redesign:** Das Layout ist nun für Desktop-Bildschirme sauber zentriert (max-width) und nicht mehr verzerrt.
+- **Modernes Button-Design:** Die Presets und Status-Aktionen haben ein neues "Pill-Design" mit passenden Icons und Farbverläufen erhalten.
+- CSS-Konflikte bei den runden Schnellzugriffs-Buttons rund um das Auto behoben.
+- DOM-Warnungen für fehlende Form-Tags im Login-Bereich entfernt.
+
+
 ## [1.2.0] - 2026-03-05
 ### Hinzugefügt
 - **Szenen-basierte Steuerung:** Sommer- und Winter-Presets direkt via Web-UI konfigurierbar.

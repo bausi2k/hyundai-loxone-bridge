@@ -48,19 +48,37 @@
             <div class="cards-grid">
                 <div class="card" style="grid-column: span 2;">
                     <div class="card-title">Klima Schnellstart</div>
-                    <div style="display:flex; gap:10px; margin-top:10px;">
-                        <button onclick="triggerPreset('winter')" class="quick-btn" style="flex:1; height:50px; background:linear-gradient(135deg, #007aff, #005bb5); color:white; box-shadow:none; font-weight:bold; border-radius: 50px;"><i class="fa-regular fa-snowflake"></i> Winter</button>
-                        <button onclick="triggerPreset('summer')" class="quick-btn" style="flex:1; height:50px; background:linear-gradient(135deg, #ff9500, #ff5e3a); color:white; box-shadow:none; font-weight:bold; border-radius: 50px;"><i class="fa-regular fa-sun"></i> Sommer</button>
-                        <button onclick="actionClimateStop()" class="quick-btn" style="flex:1; height:50px; background:#333; color:white; border:1px solid #555; box-shadow:none; font-weight:bold; border-radius: 50px;">STOP</button>
+                    <div class="preset-container">
+                        <button onclick="triggerPreset('winter')" class="preset-btn preset-winter">
+                            <i class="fa-regular fa-snowflake"></i>
+                            <span>Winter</span>
+                        </button>
+                        <button onclick="triggerPreset('summer')" class="preset-btn preset-summer">
+                            <i class="fa-regular fa-sun"></i>
+                            <span>Sommer</span>
+                        </button>
+                        <button onclick="actionClimateStop()" class="preset-btn preset-stop">
+                            <i class="fa-solid fa-power-off"></i>
+                            <span>STOP</span>
+                        </button>
                     </div>
-                    <div style="font-size:11px; color:#888; margin-top:8px; text-align:center;">Konfiguriere die Profile im Tab "Config".</div>
+                    <div style="font-size:11px; color:#888; margin-top:12px; text-align:center;">Konfiguriere die Profile im Tab "Config".</div>
                 </div>
                 
                 <div class="card" style="grid-column: span 2;">
-                    <div style="display:flex; justify-content:space-between; align-items:center;"><i class="card-icon fa-solid fa-rotate"></i><div class="card-title">Status</div></div>
-                    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px;">
-                        <button onclick="actionRefresh()" class="quick-btn" style="width:100%; height:40px; background:var(--bg-color); border:1px solid #ddd; box-shadow:none; color:#333; border-radius: 50px;">Cache laden</button>
-                        <button onclick="actionForce()" class="quick-btn" style="width:100%; height:40px; background:white; color:var(--danger); border:1px solid var(--danger); box-shadow:none; border-radius: 50px;">Live Update</button>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <i class="card-icon fa-solid fa-rotate"></i>
+                        <div class="card-title" style="margin:0;">Status</div>
+                    </div>
+                    <div class="status-action-container">
+                        <button onclick="actionRefresh()" class="status-btn">
+                            <i class="fa-solid fa-cloud-download"></i>
+                            <span>Cache laden</span>
+                        </button>
+                        <button onclick="actionForce()" class="status-btn status-btn-live">
+                            <i class="fa-solid fa-satellite-dish"></i>
+                            <span>Live Update</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -82,7 +100,7 @@
                     <label><input type="checkbox" id="win_ac"> AC/Klima</label>
                 </div>
                 <label class="lbl">Erweiterte JSON Parameter (z.B. Heizung)</label>
-                <textarea id="win_extras" class="form-input" style="height:60px; font-family:monospace; font-size:12px;" placeholder='{"heating1": 1}'></textarea>
+                <textarea id="win_extras" class="form-input" style="height:60px; font-family:monospace; font-size:12px;" placeholder='{"seatHeatingDriver": 1, "steeringWheel": 1}'></textarea>
                 <div class="api-hint">Loxone Link: <code>GET /climate/trigger/winter</code></div>
             </div>
 
@@ -102,18 +120,20 @@
                 <div class="api-hint">Loxone Link: <code>GET /climate/trigger/summer</code></div>
             </div>
 
-            <div class="card">
-                <div class="card-title">🔑 Hyundai Login</div>
-                <div class="range-wrap"><label class="lbl">Email</label><input type="text" id="bluelinkUser" class="form-input"></div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                    <div><label class="lbl">Passwort</label><input type="password" id="bluelinkPass" class="form-input"></div>
-                    <div><label class="lbl">PIN</label><input type="password" id="bluelinkPin" class="form-input"></div>
-                </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                    <div><label class="lbl">VIN (Optional)</label><input type="text" id="bluelinkVin" class="form-input"></div>
-                     <div><label class="lbl">Marke</label><select id="brand" class="form-input" style="height:42px;"><option value="hyundai">Hyundai</option><option value="kia">Kia</option></select></div>
-                </div>
-            </div>
+			<div class="card">
+			                <div class="card-title">🔑 Hyundai Login</div>
+			                <form onsubmit="return false;">
+			                    <div class="range-wrap"><label class="lbl">Email</label><input type="text" id="bluelinkUser" class="form-input" autocomplete="username"></div>
+			                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+			                        <div><label class="lbl">Passwort</label><input type="password" id="bluelinkPass" class="form-input" autocomplete="current-password"></div>
+			                        <div><label class="lbl">PIN</label><input type="password" id="bluelinkPin" class="form-input"></div>
+			                    </div>
+			                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+			                        <div><label class="lbl">VIN (Optional)</label><input type="text" id="bluelinkVin" class="form-input"></div>
+			                         <div><label class="lbl">Marke</label><select id="brand" class="form-input" style="height:42px;"><option value="hyundai">Hyundai</option><option value="kia">Kia</option></select></div>
+			                    </div>
+			                </form>
+			            </div>
 
             <div class="card">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -131,7 +151,9 @@
                 <div class="checkbox-group"><label><input type="checkbox" id="enableUdp"> Aktiv</label></div>
             </div>
 
-            <button onclick="saveConfig()" class="quick-btn" style="position:relative; width:100%; height:55px; border-radius:14px; background:var(--accent); color:white; font-size:18px; font-weight:bold; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,122,255,0.3);">Speichern</button>
+            <button onclick="saveConfig()" class="action-btn-main" style="width:100%; margin-bottom: 30px;">
+                <i class="fa-solid fa-floppy-disk"></i> Speichern
+            </button>
         </div>
     </div>
     
