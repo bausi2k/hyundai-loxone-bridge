@@ -76,18 +76,21 @@ Basis-Topic (Standard): `hyundai`
 * `hyundai/body/door/row1/driver/open` -> `0`
 * `hyundai/bridge/status` -> `online`
 
-### 3. REST API
-Das Web-UI nutzt folgende Endpunkte, die du auch selbst aufrufen kannst:
+### 3. REST API (Perfekt für Loxone)
+Das System bietet einfache GET-Endpunkte, ideal für die Einbindung in Smart Home Systeme ohne komplexes JSON-Handling.
 
 * **GET `/status`**
     Holt den Status aus dem Server-Cache (schnell, weckt Auto nicht).
 * **GET `/status/refresh`**
-    Erzwingt eine Aktualisierung vom Fahrzeug (langsam, weckt Auto, zieht 12V Batterie).
-* **POST `/climate/start`**
-    Body: `{"temperature": 21, "duration": 15, "defrost": true}`
-* **POST `/climate/stop`**
+    Erzwingt eine Aktualisierung vom Fahrzeug (langsam, weckt Auto).
+* **GET `/climate/trigger/winter`** (oder `/summer`)
+    Startet das Klima-Profil, das bequem über das Web-UI konfiguriert wurde (inkl. Sitz-/Lenkradheizung).
+* **GET `/climate/start?temp=21&duration=15&defrost=1`**
+    Startet die Klimaanlage mit dynamischen URL-Parametern (ideal für Loxone `<v>` Variablen).
+* **GET `/climate/stop`**
+    Stoppt die Klimatisierung.
 * **POST `/lock`** oder **`/unlock`**
-* **POST `/charge/start`** oder **`/stop`**
+    Türen verriegeln oder entriegeln.
 
 ---
 
