@@ -1,5 +1,27 @@
 # Changelog
 
+
+## [1.4.0] - 2026-03-05
+
+### 🚀 Added
+- **Dual-Route Support**: Alle Steuerbefehle (`/lock`, `/unlock`, `/climate/stop`, `/status/refresh`) sind jetzt sowohl per **GET** als auch per **POST** erreichbar. Dies ermöglicht die einfachere Integration in Loxone über virtuelle Ausgänge ohne komplexe Header-Konfiguration.
+- **Enhanced Loxone UDP Push**: Native Unterstützung für das Kona-Datenmodell. Die Bridge sendet nun aktiv folgende Werte an Loxone:
+  - `Hyundai_BatSoc` (Hochvolt-Batterie %)
+  - `Hyundai_Range` (Restreichweite in km)
+  - `Hyundai_12vBat` (12V-Batterie in %)
+  - `Hyundai_Locked` (Verriegelungsstatus)
+  - `Hyundai_Charging` (Ladeaktivität)
+  - `Hyundai_Plugged` (Kabel gesteckt)
+
+### 🔧 Fixed
+- **Kona Data Mapping**: Umstellung auf Case-Sensitive Pfade (`Green.BatteryManagement`, `Drivetrain.FuelSystem`), da neuere Kona-Modelle die Standard-Bluelinky-Pfade oft leer zurückgeben.
+- **UI Data Consistency**: Die `client.js` nutzt nun die gleichen robusten Pfade wie das Backend, um Nullen ("0%") im Dashboard bei Kona-Modellen zu vermeiden.
+- **Timestamp Parsing**: Korrektur der Zeitanzeige im UI; extrahiert nun korrekt Tag/Monat/Uhrzeit aus dem herstellerspezifischen Datumsformat.
+
+### 🧹 Changed
+- **UI Cleanup**: `autocomplete` Attribute zu Passwortfeldern hinzugefügt, um Browser-Warnungen zu reduzieren.
+- **Error Handling**: Verbessertes Logging bei UDP-Übertragungsfehlern.
+
 ## [1.3.2] - 2026-03-05
 ### Geändert
 
